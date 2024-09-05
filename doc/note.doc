@@ -1,0 +1,53 @@
+Project dc clone từ hướng dẫn NextJS với các công nghệ về
+ - pnpm: gói package hiệu quả hơn so với npm và yarn 
+ - tailwind css: cái này đã biết rồi css hiệu quả trực tiếp lên lớp html 
+ - clsx: là một thư viện hỗ trợ trong ReactJS để quản lý và thay đổi các classNames (tên lớp) của các phần tử HTML. 
+ Nó giúp bạn linh hoạt thêm, xóa hoặc thay đổi các lớp dựa trên điều kiện hoặc trạng thái của component.
+ - trong ví dụ bài học này chúng ta sẽ dùng typescript.
+ Ví dụ mấu cho clsx:
+
+import clsx from 'clsx';
+ 
+export default function InvoiceStatus({ status }: { status: string }) {
+  return (
+    <span
+      className={clsx(
+        'inline-flex items-center rounded-full px-2 py-1 text-sm',
+        {
+          'bg-gray-100 text-gray-500': status === 'pending',
+          'bg-green-500 text-white': status === 'paid',
+        },
+      )}
+    >
+    // ...
+)}
+
+ ----------------------------------------------------------------------------------------
+1. Khởi đầu
+ - Chúng ta sẽ thực hiện cài đặt NextJS theo tuần tự
+    1> Cài đặt gói pnpm vào global: npm install -g pnpm | pnpm install
+    2> Thực hiện tạo NextJS: npx create-next-app@latest nextjs-dashboard
+    Chúng ta chỉ thêm phần này vào để tạo sẵn next app dựa trên branch mẫu để học --> bình thường sẽ không cần
+    --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" --use-pnpm
+=> Trong khi tạo chúng ta sẽ được cung cấp khả năng cấu hình css hay loại ngôn ngữ và framework sử dụng trong NextJS như 
+    Bạn có dùng tailwind hay javascript hoặc typescript
+    ---------------------------------------------------------
+2. Theo hướng dẫn mẫu chúng ta thực hiện thiết lập tailwind
+    - Chúng ta sẽ thiết lập: import '@/app/ui/global.css'; | Thiết lập đc đặt tại rootLayout từ đó chúng ta sẽ import css
+    vào toàn bộ layout
+    - Tuy nhiên chúng ta cần 1 file css tổng (global.css) tại đường dẫn /app/ui/global.css
+    => tạo 1 file hoặc như trong demo chúng ta đã có mẫu sẵn file global.css
+    => chúng ta import các cấu hình tailwind cho trang css này để tailwind chảy qua tất cả layout:
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        => Chúng ta đã có thể sử dụng tailwindCSS nếu có error thử tìm trên mạng và điều chỉnh ở tailwind.coonfig.ts
+    - Ngoài ra chúng ta còn phương thức module css sẽ hỗ trợ tạo css ở 1 file riêng và từ đó dễ dàng dùng ở nhiều
+    trang và component khác nhau.
+    ----------------------------------------------------------
+3. Thiết lập font chữ và nội dung hình ảnh thông qua next/font và next/image
+    - Bạn có thể sử dụng google-font và thiết lập vào project của mình. NextJS sẽ tự động lưu
+    font chữ vào local nội bộ và từ đó bạn có thể sử dụng mà không cần yêu cầu mạng.
+    - Chúng ta sẽ có ví dụ tại: /app/ui/fonts.ts - nơi import font từ GG và export font để sử dụng
+                                /app/layout.tsx - trang layout dùng font đã export phía trên.
+    

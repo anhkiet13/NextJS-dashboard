@@ -2,6 +2,7 @@ import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
 export default function InvoiceStatus({ status }: { status: string }) {
+  // This is example of clsx to dynamic className properties base on properties outside
   return (
     <span
       className={clsx(
