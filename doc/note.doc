@@ -50,4 +50,29 @@ export default function InvoiceStatus({ status }: { status: string }) {
     font chữ vào local nội bộ và từ đó bạn có thể sử dụng mà không cần yêu cầu mạng.
     - Chúng ta sẽ có ví dụ tại: /app/ui/fonts.ts - nơi import font từ GG và export font để sử dụng
                                 /app/layout.tsx - trang layout dùng font đã export phía trên.
-    
+    ----------------------------------------------------------
+4. NextJS cung cấp khả năng Routing
+    - Cung cấp khả năng routing hiệu quả cũng như quy tắc đặt tên đem lại hiệu quả 
+    - Trong ví dụ demo ở vị trí: app/dashboard. Chúng ta thấy có layout.tsx và page.tsx
+    - NextJS hỗ trợ xác định layout sẽ là thành phần layout bọc ngoài các thành phần page và page
+    chính ở đây sẽ là page.tsx nằm cùng level với layout.tsx
+    - Khả năng routing và đặt tên trang vẫn còn nhiều điểm mạnh mẽ có thể khai thác(đặt theo id và dynamic đường dẫn,...)
+    - Kiến thức basic về tree folder trong NextJS: https://onedrive.live.com/personal/402786A069BBC7F5/_layouts/15/Doc.aspx?resid=402786A069BBC7F5!s23c85100dc354630b6a771478ec44d7f&cid=402786A069BBC7F5&migratedtospo=true&app=Word
+
+    ----------------------------------------------------------
+5. NextJS cải thiện khả năng Navigation với thuộc tính Link: demo | /app/ui/dashboard/nav-links.tsx
+    - Với thành phần Link từ next/link cung cấp khi chuyển trang trên dashboard demo chúng ta
+    sẽ không thấy hiện tượng refresh trang như dùng tag <a> trong html 
+    - Đó là nhờ kỹ thuật Automatic code-splitting and prefetching
+    Tài liệu: https://onedrive.live.com/personal/402786A069BBC7F5/_layouts/15/Doc.aspx?resid=402786A069BBC7F5!s7f6574c4920a458db2e4722e48cd8264&cid=402786A069BBC7F5&migratedtospo=true&app=Word
+    -----------------------------------------------------------
+6. NextJS đi cùng với khả năng Navigation linh hoạt là khả năng hiển thị liên kết đang hoạt động
+    - Ví dụ hiện hành: demo | /app/ui/dashboard/nav-links.tsx
+    - Trong ví dụ này chúng ta cần lưu ý 1 vài điều:
+        + Chúng ta sẽ sử dụng 1 hook usePathname được cung cấp bởi nextjs
+        + Chúng ta cần phải xác định trang có đang được SSR hay CSR vì hook usePathname chỉ thực hiện được 
+        trên CSR => vì vậy để biến đổi page thành CSR chúng ta sẽ đặt 1 đánh dấu đầu trang 'use client';
+        + Với ví dụ tại link file demo trên trong project chúng ta sẽ có thể thay đổi CSS của menu trang mà chúng ta đang liên kết
+        mà không mất quá nhiều công sức để xử lý dữ liệu.
+
+
